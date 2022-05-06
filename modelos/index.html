@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CM Studios - Base de ingresos</title>
+  <!--Boostrap-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="estilos.css" />
+
+</head>
+
+<body id="cuerpo">
+  <!--navegacion-->
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="nav-link" href="../index.html"><img src="arrow-left-circle.svg" alt="" width="20" height="20"
+          class="d-inline-block align-text-top"></a>
+      <span class="navbar-brand mb-0 h1">Base de ingresos</span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="spinner-border spinner-border-sm" role="status" style="display: none;" id="status"></div>
+      <div id="alerta4" style="display: none;">
+        Texto copiado al portapapeles
+      </div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#addmodelmodal" id="addmodel"
+            style="display: none;">
+            <img src="person-plus.svg" alt="" width="20" height="20" class="d-inline-block align-text-top">
+            Nueva modelo
+          </a>
+          <li class="nav-item dropdown" id="logoutbutton" style="display: none;">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!--contenido-->
+  <ul class="nav justify-content-center" id="contenido" style="display: none;">
+    <li class="nav-item">
+      <div class="row">
+        <div class="col-auto">
+          <label for="flistsedes" class="col-form-label">Sede:</label>
+        </div>
+        <div class="col-auto">
+          <select class="form-select" aria-label="Default select example" id="flistsedes">
+            <option value="0">Seleccionar</option>
+          </select>
+        </div>
+    </li>
+    </div>
+    <div>
+      <pre>  </pre>
+    </div>
+    <li class="nav-item">
+      <div class="row">
+        <div class="col-auto">
+          <label for="flistturnos" class="col-form-label">Turno:</label>
+        </div>
+        <div class="col-auto">
+          <select class="form-select" aria-label="Default select example" id="flistturnos">
+            <option selected value=0>Seleccionar</option>
+            <option value="mañana">Mañana</option>
+            <option value="tarde">Tarde</option>
+            <option value="noche">Noche</option>
+          </select>
+        </div>
+      </div>
+    </li>
+  </ul>
+  </div>
+  <div class="alert alert-success" role="alert" id="alerta" style="display: none;">
+  </div>
+  <table class="table table-striped table-responsive-sm" id="lista" style="display: none;">
+  </table>
+
+  <!--offcanvas-->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 id="offcanvasRightLabel">Información</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" id="offcanvasbody">
+    </div>
+  </div>
+  <!--ventana modal-->
+
+  <!-- Modal nueva modelo-->
+  <div class="modal fade" id="addmodelmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Nueva modelo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="newmodelform">
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="codigo" class="col-form-label">Código:</label>
+              </div>
+              <div class="col-auto">
+                <div class="input-group mb-3">
+                  <input class="form-control" type="number" id="codigo" required>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-auto">
+                <input class="form-control" type="text" placeholder="Nombre" id="nombre" required>
+              </div>
+              <div class="col-auto">
+                <input class="form-control" type="text" placeholder="Nick" id="nick" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-auto">
+                <label for="listsedes" class="col-form-label">Sede:</label>
+                <select class="form-select" aria-label="Default select example" id="listsedes">
+                </select>
+              </div>
+              <div class="col-auto">
+                <label for="listturnos" class="col-form-label">Turno:</label>
+                <select class="form-select" aria-label="Default select example" id="listturnos">
+                  <option selected value=0>Seleccionar</option>
+                  <option value="mañana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                  <option value="noche">Noche</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <label for="listpaginas1" class="col-form-label">Página:</label>
+              </div>
+              <div class="col-auto">
+                <select class="form-select" aria-label="Default select example" id="listpaginas1">
+                  <option selected value=0>Seleccionar</option>
+                </select>
+              </div>
+              <div class="ms-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="cpagina1" disabled>
+                  <label class="form-check-label" for="cpagina1">Habilitada</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input class="form-control" type="text" placeholder="Usuario" id="user1" required disabled>
+              <input class="form-control" type="password" placeholder="Clave" id="passw1" required disabled>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <label for="listpaginas2" class="col-form-label">Página:</label>
+              </div>
+              <div class="col-auto">
+                <select class="form-select" aria-label="Default select example" id="listpaginas2" disabled>
+                  <option selected value=0>Seleccionar</option>
+                </select>
+              </div>
+              <div class="ms-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="cpagina2" disabled>
+                  <label class="form-check-label" for="cpagina2">Habilitada</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input class="form-control" type="text" placeholder="Usuario" required id="user2" disabled>
+              <input class="form-control" type="password" placeholder="Clave" required id="passw2" disabled>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <label for="listpaginas3" class="col-form-label">Página:</label>
+              </div>
+              <div class="col-auto">
+                <select class="form-select" aria-label="Default select example" id="listpaginas3" disabled>
+                  <option selected value=0>Seleccionar</option>
+                </select>
+              </div>
+              <div class="ms-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="cpagina3" disabled>
+                  <label class="form-check-label" for="cpagina3">Habilitada</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input class="form-control" type="text" placeholder="Usuario" id="user3" required disabled>
+              <input class="form-control" type="password" placeholder="Clave" id="passw3" required disabled>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <label for="listpaginas4" class="col-form-label">Página:</label>
+              </div>
+              <div class="col-auto">
+                <select class="form-select" aria-label="Default select example" id="listpaginas4" disabled>
+                  <option selected value=0>Seleccionar</option>
+                </select>
+              </div>
+              <div class="ms-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="cpagina4" disabled>
+                  <label class="form-check-label" for="cpagina4">Habilitada</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input class="form-control" type="text" placeholder="Usuario" id="user4" required disabled>
+              <input class="form-control" type="password" placeholder="Clave" id="passw4" required disabled>
+            </div>
+            <div class="alert alert-danger" role="alert" id="alerta3" style="display: none;">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal editar modelo-->
+  <div class="modal fade" id="editmodelmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Editar modelo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert" id="alerta2" style="display: none;">
+          </div>
+          <form id="editmodelform">
+            <div class="row g-3 align-items-center">
+              <div class="col-auto">
+                <label for="codigo" class="col-form-label">Código:</label>
+              </div>
+              <div class="col-auto">
+                <div class="input-group mb-3">
+                  <input class="form-control" type="number" id="ecodigo" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-auto">
+                <input class="form-control" type="text" placeholder="Nombre" id="enombre" required>
+              </div>
+              <div class="col-auto">
+                <input class="form-control" type="text" placeholder="Nick" id="enick" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-auto">
+                <label for="elistsedes" class="col-form-label">Sede:</label>
+                <select class="form-select" aria-label="Default select example" id="elistsedes">
+
+                </select>
+              </div>
+              <div class="col-auto">
+                <label for="elistturnos" class="col-form-label">Turno:</label>
+                <select class="form-select" aria-label="Default select example" id="elistturnos">
+                  <option selected value=0>Seleccionar</option>
+                  <option value="mañana">Mañana</option>
+                  <option value="tarde">Tarde</option>
+                  <option value="noche">Noche</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-auto">
+                <label for="listpaginas" class="col-form-label">Página:</label>
+              </div>
+              <div class="col-auto">
+                <select class="form-select" aria-label="Default select example" id="listpaginas">
+                  <option selected value=0>Seleccionar</option>
+                </select>
+              </div>
+              <div class="ms-auto">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="cpagina" disabled>
+                  <label class="form-check-label" for="cpagina">Habilitada</label>
+                </div>
+              </div>
+            </div>
+            <div class="input-group mb-3">
+              <input class="form-control" type="text" placeholder="Usuario" id="user" required disabled>
+              <input class="form-control" type="text" placeholder="Clave" id="passw" required disabled>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" id="canceledit" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--modal delete email-->
+  <div class="modal fade" id="deleteemailmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar correo</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea eliminar este correo? Esta acción no se puede deshacer.
+          <form id="deleteemailform">
+            <input id="emailmodel" type="hidden" value="">
+            <input id="idmodel" type="hidden" value="">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Eliminar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--modal delete network-->
+  <div class="modal fade" id="deletenetworkmodal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar red social</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea eliminar esta red social? Esta acción no se puede deshacer.
+          <form id="deletenetworkform">
+            <input id="networkid" type="hidden" value="">
+            <input id="usernetwork" type="hidden" value="">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Eliminar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--modal usuario denegado-->
+  <div class="modal fade" id="deniedmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Restringido</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          El correo con el que está intentando ingresar no se encuentra en nuestra base de datos.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--scripst bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+    integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!--scripts firebase-->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyD__4BI_43Vp8o4mJEYuSOScSdZ3JhGoeo",
+      authDomain: "cm-group-database-23eb8.firebaseapp.com",
+      databaseURL: "https://cm-group-database-23eb8.firebaseio.com",
+      projectId: "cm-group-database-23eb8",
+      storageBucket: "cm-group-database-23eb8.appspot.com",
+      messagingSenderId: "147417541395",
+      appId: "1:147417541395:web:c2625b4f43bec5d2dc48e6",
+      measurementId: "G-WW8L86VBQY"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const auth = firebase.auth();
+    const fs = firebase.firestore();
+  </script>
+
+  <!--codigo personalizado-->
+
+  <script src="main.js"></script>
+
+</body>
+
+</html>

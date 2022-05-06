@@ -1,0 +1,87 @@
+#googlelogin{
+    opacity: 0;
+    position: absolute;
+}
+
+#googlelogin{
+    animation-duration:  3s;
+    animation-delay: 1s;
+    animation-name: fadein;
+    animation-fill-mode: forwards;
+}
+
+#cuerpo{
+    animation: fadein 2s;
+}
+
+#saludo{
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+}
+
+#saludo{
+    animation-duration:  3s;
+    animation-delay: 1.5s;
+    animation-name: fadein;
+    animation-fill-mode: forwards;
+}
+
+#foto{
+    animation-duration:  3s;
+    animation-delay: 0.5s;
+    animation-name: fadein;
+    animation-fill-mode: forwards;
+}
+
+#foto{
+    text-align: center;
+    opacity: 0;
+}
+
+.circular--square {
+    border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+
+.shadowbutton{
+    border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+    box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+  .nounderline {
+    text-decoration: none !important
+  }
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes bluroff{
+    from{
+        filter: blur(3rem);
+    }
+    to {
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeout{
+    from{
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
