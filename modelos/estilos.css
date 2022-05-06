@@ -1,0 +1,28 @@
+#googlelogin{
+    opacity: 0;
+}
+
+#googlelogin{
+    animation-duration:  3s;
+    animation-delay: 1s;
+    animation-name: fadein;
+    animation-fill-mode: forwards;
+}
+
+#botones {
+    display: none;
+    justify-content: space-between;
+  }
+
+#cuerpo{
+    animation: fadein 2s;
+}
+
+@keyframes fadein{
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
